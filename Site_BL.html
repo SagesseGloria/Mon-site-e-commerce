@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Liputa - Boutique en Ligne</title>
+    <!--<link rel="stylesheet" href="styles.css"> -->
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Header */
+/*header {
+    background-color: #003399;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}*/
+header {
+    background-color: #003399;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.language-selector {
+    margin-left: auto; /* Aligne l'icône de langue à droite */
+    display: flex;
+    align-items: center;
+}
+
+
+.language-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #003399;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 150px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li .btn {
+    background-color: #fff;
+    color: #003399;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url('hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero-text h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero-text .btn {
+    background-color: #003399;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Categories Section */
+.categories {
+    padding: 50px;
+    text-align: center;
+}
+
+.categories h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.category-item {
+    text-align: center;
+}
+
+.category-item img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.category-item h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+/* Footer */
+footer {
+    background-color: #003399;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .social-media a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+footer .footer-info {
+    margin-top: 10px;
+}
+/* Barre de Recherche */
+/*.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}*/
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    flex-grow: 2; /* Pour bien espacer les éléments */
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border: 2px solid #003399;
+    /*border-radius: 5px 0 0 5px;*/
+    outline: none;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #003399;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #002366;
+}
+/* Fenêtre Modale */
+.modal {
+    display: none; /* Par défaut, la fenêtre est cachée */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #003399;
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.modal-content button {
+    background-color: #003399;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #002366;
+}
+.form-wrapper .cart{
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s; } .cart.show{visibility: visible; opacity: 1;}
+.cart{
+    position: absolute; width: 336px; height: 350px; justify-content: center;
+    left: 951px; top: 154px; background: #8b8a8a; text-align: center; z-index: 1;}
+.cart.show{visibility: visible;opacity: 1;}
+.card.close{visibility: hidden; opacity: 0;}
+.close-btn{
+    position: absolute; font-size: 55px; width: 29px; 
+    height: 29px; color: #ffffff; top: 5px; z-index: 1; 
+    left: 500px; cursor: pointer;}
+.form1{
+    position: absolute; width: 169px; height: 18px;
+    left: 85px; top: 84.04px; 
+    font-weight: 400; font-size: 14px; line-height: 18px; color: #535353;}
+.form2{
+    position: absolute; width: 155px;
+    height: 18px; left: 85px; top: 154px; font-weight: 400;
+    font-size: 14px; line-height: 18px; color: #535353;}
+.form-wrapper button{
+    position: absolute; width: 107px; height: 33px; color: #ffffff; border: 0; border-radius: 30px;
+    left: 120px; top: 235px; background-color: rgb(6, 6, 49); cursor: pointer;}
+.button p{
+    position: absolute; color: #535353; top: 275px; left: 45px;
+}
+.button a{
+    text-decoration: none; color: black;} .button a:hover{ color: #535353;}
+.close-btn{
+    position: absolute; font-size: 55px; width: 29px; 
+    height: 29px; color: #ffffff; top: -35px; z-index: 1; 
+    left: 450px; cursor: pointer;}
+.formclose{ display: block; cursor: pointer; }
+.cart.close{visibility: hidden; opacity: 0;}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+ul li a:hover{
+    color: rgb(101, 100, 100); text-decoration: none;}
+/*.menu li{
+    float: left; text-decoration: none;}*/
+.menu {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.menu li a{
+    text-decoration: none; display: block; padding: 10px; color: white; cursor: pointer; margin-top: 50px;}
+.menu li a:hover{
+    background-color:  rgb(233, 231, 231); color: rgb(80, 78, 78);}
+
+nav li:hover .sub-menu{ display: block;}
+.sub-menu{
+    position: absolute; display: none;
+    }
+.sub-menu li{
+    display: block; width: 200px; top: 0px; z-index: 1;
+    } 
+.sub-menu li a{ color: white; background-color: #003399}
+.sub-menu li:hover a{
+    background-color: rgba(255, 255, 255, 0.627); color: rgb(80, 78, 78);}
+   /* .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}*/
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+#cart-modal {
+    display: none; /* Par défaut, caché */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#cart-modal .modal-content {
+    background: white;
+    margin: 10% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#cart-items li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#cart-total {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#checkout-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#checkout-btn:hover {
+    background-color: #218838;
+}
+
+#close-cart-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #aaa;
+    cursor: pointer;
+}
+
+#close-cart-modal:hover {
+    color: #000;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="C:\Users\Глория сажэс\Downloads\Remove_LogoBL.png" alt="Beautiful Liputa Logo">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="femme.html">Femme</a></li>
+                <li><a href="homme.html">Homme</a></li>
+                <li><a href="enfants.html">Enfants</a></li>
+                <li>
+                    <a>Autres</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="Accessoire.html">Accessoires</a>
+                        </li>
+                        <li>
+                            <a href="Tissue.html">Tissues</a>
+                        </li>
+                        </ul>
+                </li>
+                <li><a href="about.html">À propos de nous</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="panier.html" id="cart">
+                    🛒 (<span id="cart-count">0</span>)
+                </a>
+            </li>
+                <li><a id="open-login" class="btn">Se Connecter</a></li>
+            </ul>
+        </nav>
+        <!-- Fenêtre Modale pour le Formulaire de Connexion -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <h2>Connexion</h2>
+        <form id="login-form">
+            <label for="email">Adresse mail</label>
+            <input type="text" id="email" placeholder="Entrez votre adresse mail" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Entrez votre mot de passe" required>
+
+            <button type="submit" class="btn">Se Connecter</button>
+            <!-- Добавлена ссылка на регистрацию -->
+        <p>Pas encore de compte ? 
+            <a href="Form_inscription.html" id="register-link">Inscrivez-vous ici</a>
+        </p>
+        </form>
+    </div>
+</div>
+<div id="register-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-register-modal">&times;</span>
+        <h2>Inscription</h2>
+        <form id="register-form">
+            <!-- Поле для ФИО -->
+            <label for="full-name">Nom complet</label>
+            <input type="text" id="full-name" name="full-name" placeholder="Entrez votre nom complet" required>
+
+            <!-- Поле для электронной почты -->
+            <label for="new-email">Adresse mail</label>
+            <input type="email" id="new-email" name="new-email" placeholder="Entrez votre adresse mail" required>
+
+            <!-- Поле для номера телефона -->
+            <label for="phone">Numéro de téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Entrez votre numéro de téléphone" required>
+
+            <!-- Поле для адреса -->
+            <label for="address">Adresse</label>
+            <input type="text" id="address" name="address" placeholder="Entrez votre adresse" required>
+
+            <!-- Поле для пароля -->
+            <label for="new-password">Mot de passe</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Créez un mot de passe" required>
+
+            <!-- Подтверждение пароля -->
+            <label for="confirm-password">Confirmez le mot de passe</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmez votre mot de passe" required>
+
+            <!-- Кнопка отправки -->
+            <button type="submit" class="btn">S'inscrire</button>
+        </form>
+    </div>
+</div>
+        <!-- Barre de Recherche -->
+    <div class="search-bar">
+        <input type="search" id="search-input" placeholder="Rechercher...">
+        <button id="search-btn">🔍</button>
+    </div>
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <select id="language">
+                <option value="fr" selected>FR</option>
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+            </select>
+        </div>
+    </header>
+    <!-- Fenêtre Modale pour le Panier -->
+<div id="cart-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-cart-modal">&times;</span>
+        <h2>Panier d'achat</h2>
+        <ul id="cart-items">
+            <!-- Les articles ajoutés seront affichés ici -->
+        </ul>
+        <p id="cart-total">Total : 0€</p>
+        <button id="checkout-btn">Passer à la caisse</button>
+    </div>
+</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1 data-lang="hero-text">Découvrez l'élégance de la mode africaine</h1>
+            <a href="#" class="btn" data-lang="btn-shop">Parcourir la Boutique</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <h2>Nos Catégories</h2>
+        <div class="category-grid">
+            <div class="category-item">
+                <img src="c:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme16.jpeg" alt="Robes">
+                <h3>Robes Africaines</h3>
+            </div>
+            <div class="category-item">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\Kids5.jpeg" alt="Chemises">
+                <h3>Chemises Africaines</h3>
+            </div>
+            <div class="category-item">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\acc13.jpeg" alt="Accessoires">
+                <h3>Accessoires</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">WhatsApp</a>
+            <a href="#">Instagram</a>
+            <a href="https://vk.com/id693623059">VKontakte</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2024 Beautiful Liputa - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <script src="Site_BL.js"></script>
+</body>
+</html>

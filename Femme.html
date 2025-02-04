@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue Femme - Beautiful Liputa</title>
+    <!--<link rel="stylesheet" href="styles.css"> -->
+    <style>
+        /* Styles pour la page Femme */
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Header */
+header {
+    background-color: #003399;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.language-selector select {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #003399;
+    font-weight: bold;
+}
+
+.logo img {
+    width: 150px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li .btn {
+    background-color: #fff;
+    color: #003399;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+/* Footer */
+footer {
+    background-color: #003399;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .social-media a {
+    color: white;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+footer .footer-info {
+    margin-top: 10px;
+}
+/* Fenêtre Modale */
+.modal {
+    display: none; /* Par défaut, la fenêtre est cachée */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-content h2 {
+    text-align: center;
+    color: #003399;
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.modal-content button {
+    background-color: #003399;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #002366;
+}
+/* Barre de Recherche */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.search-bar input {
+    padding: 8px 12px;
+    border: 2px solid #003399;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #003399;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #002366;
+}
+ul li a:hover{
+    color: rgb(101, 100, 100); text-decoration: none;}
+/*.menu li{
+    float: left; text-decoration: none;}*/
+.menu li a{
+    text-decoration: none; display: block; padding: 10px; color: white; cursor: pointer; margin-top: 50px;}
+.menu li a:hover{
+    background-color:  rgb(233, 231, 231); color: rgb(80, 78, 78);}
+
+nav li:hover .sub-menu{ display: block;}
+.sub-menu{
+    position: absolute; display: none;
+    }
+.sub-menu li{
+    display: block; width: 200px; top: 0px; z-index: 1;
+    } 
+.sub-menu li a{ color: white; background-color: #003399}
+.sub-menu li:hover a{
+    background-color: rgba(255, 255, 255, 0.627); color: rgb(80, 78, 78);}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.product-card h2 {
+    color: #003399;
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.product-card p {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.price {
+    display: block;
+    color: #e60000;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.add-to-cart {
+    background-color: #003399;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #002366;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="C:\Users\Глория сажэс\Downloads\Remove_LogoBL.png" alt="Beautiful Liputa Logo">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="Site_BL.html">Accueil</a></li>
+                <li><a href="femme.html">Femme</a></li>
+                <li><a href="homme.html">Homme</a></li>
+                <li><a href="enfants.html">Enfants</a></li>
+                <li>
+                    <a>Autres</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="Accessoire.html">Accessoires</a>
+                        </li>
+                        <li>
+                            <a href="Tissue.html">Tissues</a>
+                        </li>
+                        </ul>
+                </li>
+                <li><a href="about.html">À propos de nous</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            <li>
+                <a href="panier.html" id="cart">
+                    🛒 (<span id="cart-count">0</span>)
+                </a>
+            </li>
+                <li><a id="open-login" class="btn">Se Connecter</a></li>
+            </ul>
+        </nav>
+        <!-- Fenêtre Modale pour le Formulaire de Connexion -->
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <h2>Connexion</h2>
+        <form id="login-form">
+            <label for="email">Adresse mail</label>
+            <input type="text" id="email" placeholder="Entrez votre adresse mail" required>
+
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Entrez votre mot de passe" required>
+
+            <button type="submit" class="btn">Se Connecter</button>
+        </form>
+    </div>
+</div>
+        <!-- Barre de Recherche -->
+    <div class="search-bar">
+        <input type="search" id="search-input" placeholder="Rechercher...">
+        <button id="search-btn">🔍</button>
+    </div>
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <select id="language">
+                <option value="fr" selected>FR</option>
+                <option value="en">EN</option>
+                <option value="ru">RU</option>
+            </select>
+        </div>
+    </header>
+
+
+    <!-- Section Principale -->
+    <main>
+        <h1>Catalogue Femme</h1>
+        <div class="product-container">
+            <!-- Produit 1 -->
+            <div class="product-card">
+                <img src="c:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme16.jpeg" alt="Robe africaine colorée">
+                <h2>Robe Africaine Colorée</h2>
+                <p>Une robe élégante et colorée, idéale pour toutes les occasions.</p>
+                <span class="price">25 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+
+            <!-- Produit 2 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme46.jpeg" alt="Chemise femme pagne">
+                <h2>Chemise en Pagne</h2>
+                <p>Un style moderne et traditionnel avec des motifs africains.</p>
+                <span class="price">18 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+
+            <!-- Produit 3 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme70.jpeg" alt="Ensemble femme wax">
+                <h2>Combinaison Femme Wax</h2>
+                <p>Combinaison en tissu wax pour un look chic.</p>
+                <span class="price">20 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+
+            <!-- Produit 4 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme3.jpeg" alt="Ensemble femme wax">
+                <h2>Combinaison Femme bustsé</h2>
+                <p>Combinaison Femme bustsé en tissu wax pour un look chic.</p>
+                <span class="price">37 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <!-- Produit 5 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme10.jpeg" alt="Ensemble femme wax">
+                <h2>Robe longue Wax</h2>
+                <p>Robe longue avec plusieurs couleurs pour un look stylé.</p>
+                <span class="price">21 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <!-- Produit 6 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme20.jpeg" alt="Ensemble femme wax">
+                <h2>Robe simple femme </h2>
+                <p>Robe simple femme pour style décontracté.</p>
+                <span class="price">13 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <!-- Produit 7 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme13.jpeg" alt="Ensemble femme wax">
+                <h2>Robe longue Wax</h2>
+                <p>Robe longue colorée en tissu wax pour des fêtes</p>
+                <span class="price">35 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+            <!-- Produit 8 -->
+            <div class="product-card">
+                <img src="C:\Users\Глория сажэс\Home_Page\Курсовая работа\Images\femme14.jpeg" alt="Ensemble femme wax">
+                <h2>Robe courte Femme </h2>
+                <p>Robe courte stylée pour toutes occasions.</p>
+                <span class="price">15 000 FCFA</span>
+                <button class="add-to-cart">Ajouter au panier</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">WhatsApp</a>
+            <a href="#">Instagram</a>
+            <a href="https://vk.com/id693623059">VKontakte</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2024 Beautiful Liputa - Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!--<script src="scripts.js"></script> -->
+    <script>
+        // Compteur du panier
+let cartCount = 0;
+
+// Fonction pour ajouter au panier
+document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+        cartCount++;
+        document.getElementById("cart-count").innerText = cartCount;
+        alert("Produit ajouté au panier !");
+    });
+});
+// Sélection des éléments
+const loginModal = document.getElementById("login-modal");
+const openLogin = document.getElementById("open-login");
+const closeModal = document.getElementById("close-modal");
+
+// Ouvrir la fenêtre modale
+openLogin.addEventListener("click", function (event) {
+    event.preventDefault();
+    loginModal.style.display = "block";
+});
+
+// Fermer la fenêtre modale
+closeModal.addEventListener("click", function () {
+    loginModal.style.display = "none";
+});
+
+// Fermer si on clique en dehors du formulaire
+window.addEventListener("click", function (event) {
+    if (event.target === loginModal) {
+        loginModal.style.display = "none";
+    }
+});
+    </script>
+</body>
+</html>
